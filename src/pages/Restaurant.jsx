@@ -133,7 +133,7 @@ const Restaurant = () => {
     <section className={classes.container}>
     {showForm && <Form setShowForm={setShowForm} formData={formData} setFormData={setFormData} onDone={handleAddPeople}/>}
       <header className={classes.header}>
-        <h2>Restaurant</h2>
+        <h2>Restaurant Manager</h2>
         <button onClick={() => setShowForm(true)}>
           Add People
         </button>
