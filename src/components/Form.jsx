@@ -17,7 +17,7 @@ const Form = ({formData,setFormData,setShowForm,onDone}) => {
                 <label>Fuss message if evicted <small>(text)</small></label>
                 <input type="text" value={formData.fussMessage} onChange={(e) => setFormData({...formData,fussMessage: e.target.value})} />
                 </div>
-                <button disabled={!formData.numberOfPeople && !formData.duration} className={classes.addButton} onClick={onDone}>Add</button>
+                <button disabled={!formData.numberOfPeople && !formData.duration && !formData.fussMessage} className={classes.addButton} onClick={onDone}>Add</button>
         </div>
     </div>
   )

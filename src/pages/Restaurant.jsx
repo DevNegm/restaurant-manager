@@ -1,74 +1,77 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classes from './Restaurant.module.scss'
 import Table from '../components/Table'
 import Form from '../components/Form'
+
+const tablesArray = [
+  {
+    id:1,
+    capacity: 1,
+    available: true,
+    numberOfPeople: 0,
+    duration: 0,
+    fussMessage: '',
+  },
+  {
+    id:2,
+    capacity: 2,
+    available: true,
+    numberOfPeople: 0,
+    duration: 0,
+    fussMessage: '',
+  },
+  {
+    id:3,
+    capacity: 3,
+    available: true,
+    numberOfPeople: 0,
+    duration: 0,
+    fussMessage: '',
+  },
+  {
+    id:4,
+    capacity: 4,
+    available: true,
+    numberOfPeople: 0,
+    duration: 0,
+    fussMessage: '',
+  },
+  {
+    id:5,
+    capacity: 5,
+    available: true,
+    numberOfPeople: 0,
+    duration: 0,
+    fussMessage: '',
+  },
+  {
+    id:6,
+    capacity: 6,
+    available: true,
+    numberOfPeople: 0,
+    duration: 0,
+    fussMessage: '',
+  },
+  {
+    id:7,
+    capacity: 10,
+    available: true,
+    numberOfPeople: 0,
+    duration: 0,
+    fussMessage: '',
+  },
+  {
+    id:8,
+    capacity: 12,
+    available: true,
+    numberOfPeople: 0,
+    duration: 0,
+    fussMessage: '',
+  },
+]
+
 const Restaurant = () => {
-  const [tables,setTables] = useState([
-    {
-      id:1,
-      capacity: 1,
-      available: true,
-      numberOfPeople: 0,
-      duration: 0,
-      fussMessage: '',
-    },
-    {
-      id:2,
-      capacity: 2,
-      available: true,
-      numberOfPeople: 0,
-      duration: 0,
-      fussMessage: '',
-    },
-    {
-      id:3,
-      capacity: 3,
-      available: true,
-      numberOfPeople: 0,
-      duration: 0,
-      fussMessage: '',
-    },
-    {
-      id:4,
-      capacity: 4,
-      available: true,
-      numberOfPeople: 0,
-      duration: 0,
-      fussMessage: '',
-    },
-    {
-      id:5,
-      capacity: 5,
-      available: true,
-      numberOfPeople: 0,
-      duration: 0,
-      fussMessage: '',
-    },
-    {
-      id:6,
-      capacity: 6,
-      available: true,
-      numberOfPeople: 0,
-      duration: 0,
-      fussMessage: '',
-    },
-    {
-      id:7,
-      capacity: 10,
-      available: true,
-      numberOfPeople: 0,
-      duration: 0,
-      fussMessage: '',
-    },
-    {
-      id:8,
-      capacity: 12,
-      available: true,
-      numberOfPeople: 0,
-      duration: 0,
-      fussMessage: '',
-    },
-  ]) 
+  const [tables,setTables] = useState(localStorage.getItem('tables') ? JSON.parse(localStorage.getItem('tables')) : tablesArray) 
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
     numberOfPeople: '',
@@ -76,13 +79,16 @@ const Restaurant = () => {
     fussMessage: '',
   });
 
-  // filter tables based on availability and capacity
-  // sort the filtered tables based on capacity in ascending order
+  // filter tables based on availability and capacity sort the filtered tables based on capacity in ascending order
   const sortedTables = tables
   .filter(table => table.available && table.capacity >= formData.numberOfPeople)
   .sort((a, b) => a.capacity - b.capacity);
 
-  // update the table with the best match
+  // save the tables to local storage when the tables state changes
+  useEffect(() => {
+    localStorage.setItem('tables', JSON.stringify(tables));
+  }, [tables]);
+
   const handleAddPeople = () => {
     if (sortedTables.length > 0) {
       // get the id of the best match table
@@ -101,7 +107,7 @@ const Restaurant = () => {
       });
       setTables(newTables);
     } else {
-      alert('No table found.');
+      alert('No table found with that capacity.');
     }
     // clear the form modal and hide it
     setFormData({
@@ -128,6 +134,8 @@ const Restaurant = () => {
     });
     setTables(updatedTables);
   };
+
+
 
   return (
     <section className={classes.container}>

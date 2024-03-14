@@ -18,7 +18,15 @@ const Table = ({table,handleMakeTableAvailable}) => {
         <div className={classes.container}>
             <h5>Table Unavailable</h5>
             <p>Occupied By: {table.numberOfPeople}</p>
-            <p className={classes.duration}>(Free in <Countdown startNumber={table.duration} onEnd={handleMakeTableAvailable} id={table.id} />) </p>
+            <p className={classes.duration}>
+                (Free in
+                 <Countdown startNumber={table.duration}
+                    onEnd={handleMakeTableAvailable}
+                    id={table.id}
+                    handleTimeChanges={handleTimeChanges}
+                  />
+                )
+            </p>
             <button onClick={handleEvict}>Evict</button>
         </div>
       )

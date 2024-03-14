@@ -5,7 +5,6 @@ const Countdown = ({ startNumber, onEnd, id }) => {
   const [count, setCount] = useState(startNumber * 1000);
 
   useEffect(() => {
-    // Trigger onEnd when countdown reaches 0
     if (count === 0) {
       onEnd(id);
     }
@@ -19,7 +18,6 @@ const Countdown = ({ startNumber, onEnd, id }) => {
 
   // Convert count (in milliseconds) back to seconds for display
   const displayTime = formatTime(Math.round(count / 1000));
-
   return displayTime;
 };
 
