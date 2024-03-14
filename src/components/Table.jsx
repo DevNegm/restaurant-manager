@@ -23,7 +23,6 @@ const Table = ({table,handleMakeTableAvailable}) => {
                  <Countdown startNumber={table.duration}
                     onEnd={handleMakeTableAvailable}
                     id={table.id}
-                    handleTimeChanges={handleTimeChanges}
                   />
                 )
             </p>
