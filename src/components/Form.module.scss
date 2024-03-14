@@ -1,0 +1,70 @@
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .formContainer {
+        position: relative;
+        max-width: 500px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        background-color: #f2f2f2;
+        padding: 2rem;
+        padding-top: 3rem;
+        border: 1px solid #e1e1e1;
+        border-radius: 15px;
+        .inputContainer {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            label {
+                font-weight: 700;
+                small {
+                    font-weight: normal;
+                    color: #5a5a5a;
+                }
+            }
+            input {
+                padding: 0.5rem;
+                border: 1px solid #e1e1e1;
+                border-radius: 5px;
+                &:focus {
+                    outline: none;
+                    border-color: #222;
+                }
+            }
+        }
+        .addButton {
+            padding: 0.75rem 2rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 5px;
+            background-color: #222;
+            color: #fff;
+            transition: background-color 0.3s ease;
+            width: 50%;
+            cursor: pointer;
+            &:hover {
+                background-color: #e1e1e1;
+                color: #222;
+            }
+        }
+        .closeButton {
+            all: unset;
+            position: absolute;
+            right: 2rem;
+            top: 1rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding:0 7px;
+            font-weight: bold;
+        }
+    }
+}
